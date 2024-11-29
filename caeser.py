@@ -22,3 +22,29 @@ mode = input("Encrypt or Decrypt? ")
 # Perform encryption or decryption
 result = caesar_cipher(text, shift, mode)
 print(f"Result: {result}")
+
+#decryption
+def caesar_decrypt(ciphertext, key):
+    decrypted_text = ""
+    
+    for char in ciphertext:
+        # Check if the character is a letter
+        if char.isalpha():
+            # Handle lowercase letters
+            if char.islower():
+                decrypted_text += chr((ord(char) - ord('a') - key) % 26 + ord('a'))
+            # Handle uppercase letters
+            elif char.isupper():
+                decrypted_text += chr((ord(char) - ord('A') - key) % 26 + ord('A'))
+        else:
+            # Non-alphabet characters remain unchanged
+            decrypted_text += char
+            
+    return decrypted_text
+
+# Example usage
+ciphertext = input("Enter the ciphertext: ")
+key = int(input("Enter the decryption key: "))
+
+decrypted_text = caesar_decrypt(ciphertext, key)
+print(f"Decrypted text: {decrypted_text}")
